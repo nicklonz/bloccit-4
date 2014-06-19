@@ -1,6 +1,6 @@
 # config/routes.rb
 
-Bloccit::Application.routes.draw do
+Bloccit4::Application.routes.draw do
 
   resources :posts
 
