@@ -1,5 +1,3 @@
-# db/seeds.rb
-
 require 'faker'
 
 # Create Users
@@ -14,40 +12,75 @@ require 'faker'
 end
 users = User.all
 
-# Note: by calling `User.new` instead of `create`,
-# we create an instance of User which isn't immediately saved to the database.
 
-# The `skip_confirmation!` method sets the `confirmed_at` attribute
-# to avoid triggering an confirmation email when the User is saved.
-
-# The `save` method then saves this User to the database.
+# Create Topics
+15.times do
+  Topic.create(
+    name:         Faker::Lorem.sentence,
+    description:  Faker::Lorem.paragraph
+  )
+end
+topics = Topic.all
 
 
 # Create Posts
 50.times do
-  Post.create(
+  post = Post.create(
     user:   users.sample,
+    topic:  topics.sample,
     title:  Faker::Lorem.sentence,
     body:   Faker::Lorem.paragraph
   )
 end
+
 posts = Post.all
+
 
 # Create Comments
 100.times do
-  Comment.create(
-    # user: users.sample,   # we have not yet associated Users with Comments
+  comment = Comment.create(
+    user: users.sample,
     post: posts.sample,
     body: Faker::Lorem.paragraph
   )
+
+  # set the created_at to a time within the past year
+  comment.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
 end
 
-User.first.update_attributes(
-  email: 'mrtest@mailinator.com',
-  password: 'password',
+
+# Create an admin user
+admin = User.new(
+  name:     'Admin User',
+  email:    'admin@example.com',
+  password: 'helloworld',
+  role:     'admin'
 )
+admin.skip_confirmation!
+admin.save
+
+# Create a moderator
+moderator = User.new(
+  name:     'Moderator User',
+  email:    'moderator@example.com', 
+  password: 'helloworld',
+  role:     'moderator'
+)
+moderator.skip_confirmation!
+moderator.save
+
+# Create a member
+member = User.new(
+  name:     'Member User',
+  email:    'member@example.com',
+  password: 'helloworld',
+)
+member.skip_confirmation!
+member.save
+
 
 puts "Seed finished"
-puts "#{User.count} users created"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
+puts "#{User.count} Users created"
+puts "#{Topic.count} Topics created"
+puts "#{Post.count} Posts created"
+puts "#{Comment.count} Comments created"
