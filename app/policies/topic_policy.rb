@@ -14,3 +14,9 @@ class TopicPolicy < ApplicationPolicy
     create?
   end
 end
+
+private
+
+def topic_params
+  params.require(:topic).permit(:name, :description, :public)
+end
