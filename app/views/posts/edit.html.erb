@@ -1,8 +1,9 @@
 <!-- app/views/posts/edit.html.erb -->
 
 <h1>Edit Post</h1>
+
 <div class="row">
-  <div class="col-md-4">
+ <div class="col-md-4">
     <p>Guidelines for posts</p>
     <ul>
       <li>Make sure the it rhymes.</li>
@@ -11,6 +12,7 @@
     </ul>
   </div>
   <div class="col-md-8">
+<<<<<<< HEAD
     <%= form_for [@topic, @post] do |f| %>
       <div class="form-group">
         <%= f.label :title %>
@@ -24,5 +26,10 @@
         <%= f.submit "Save", class: 'btn btn-success' %>
       </div>
     <% end %>
+=======
+
+  <%= render partial: 'form', locals: { topic: @topic, post: @post } %>
+
+>>>>>>> validating-posts
   </div>
 </div>
