@@ -1,9 +1,7 @@
-class CommentPolicy < ApplicationPolicy
-  def create?
-    user.present?
-  end
+# app/policies/comment_policy.rb
 
-  def new?
-    create?
+class CommentPolicy < ApplicationPolicy
+  def destroy?
+    user.present? && (record.user == user || user.role?(:admin) || user.role?(:moderator))
   end
 end
