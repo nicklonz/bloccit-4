@@ -2,6 +2,19 @@
 
 Bloccit4::Application.routes.draw do
 
+<<<<<<< HEAD
+=======
+  get 'comments/create'
+
+  get 'topics/index'
+
+  get 'topics/new'
+
+  get 'topics/show'
+
+  get 'topics/edit'
+
+>>>>>>> comments
   devise_for :users
 
   resources :users, only: [:update]
