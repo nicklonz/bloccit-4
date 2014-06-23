@@ -2,6 +2,8 @@
 
 Bloccit4::Application.routes.draw do
 
+  get 'comments/create'
+
   get 'topics/index'
 
   get 'topics/new'

@@ -35,19 +35,17 @@ end
 
 posts = Post.all
 
-
 # Create Comments
-#100.times do
-  #comment = Comment.create(
-    #user: users.sample,
-    #post: posts.sample,
-    #body: Faker::Lorem.paragraph
-  #)
-
-  # set the created_at to a time within the past year
- # comment.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
-#end
-
+post_count = Post.count
+User.all.each do |user|
+  rand(30..50).times do
+    p = Post.find(rand(1..post_count))
+    c = user.comments.create(
+      body: Faker::Lorem.paragraphs(rand(1..2)).join("\n"),
+      post: p)
+    c.update_attribute(:created_at, Time.now - rand(600..31536000))
+  end
+end
 
 # Create an admin user
 admin = User.new(
