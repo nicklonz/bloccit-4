@@ -2,35 +2,29 @@ class VotesController < ApplicationController
   before_filter :setup
 
   def up_vote
-    # Just like other controllers, grab the parent objects
-    @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.find(params[:post_id])
+    update_vote(1)
 
-    # Look for an existing vote by this person so we don't create multiple
-    @vote = @post.votes.where(user_id: current_user.id).first
-
-    if @vote # if it exists, update it
-      @vote.update_attribute(:value, 1)
-    else # create it
-      @vote = current_user.votes.create(value: 1, post: @post)
-    end
+    # no flash message, just want it to "happen"
     redirect_to :back
   end
+
+  def down_vote
+    update_vote(-1)
+
+    # no flash message, just want it to "happen"
+    redirect_to :back
+  end
+
+  private
 
   def setup
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.find(params[:post_id])
 
     @vote = @post.votes.where(user_id: current_user.id).first
-
-    def setup
-    @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.find(params[:post_id])
-
-    @vote = @post.votes.where(user_id: current_user.id).first
   end
 
-    def update_vote(new_value)
+  def update_vote(new_value)
     if @vote # if it exists, update it
       authorize @vote, :update?
       @vote.update_attribute(:value, new_value)
@@ -40,5 +34,5 @@ class VotesController < ApplicationController
       @vote.save
     end
   end
-end
+
 end
