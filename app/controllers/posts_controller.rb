@@ -1,6 +1,8 @@
 # app/controllers/posts_controller.rb
 
 class PostsController < ApplicationController
+
+  User.friendly.find(params[:id])
    def show
     @topic = Topic.find(params[:topic_id])
     authorize @topic

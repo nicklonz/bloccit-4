@@ -2,6 +2,8 @@
 
 Bloccit4::Application.routes.draw do
 
+  resources :userfids
+
   devise_for :users
 
   resources :users, only: [:update]

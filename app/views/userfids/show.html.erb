@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @userfid.name %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @userfid.slug %>
+</p>
+
+<%= link_to 'Edit', edit_userfid_path(@userfid) %> |
+<%= link_to 'Back', userfids_path %>
