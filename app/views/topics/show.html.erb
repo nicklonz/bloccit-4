@@ -1,20 +1,16 @@
-<!-- app/views/topics/show.html.erb -->
-
 <h1><%= @topic.name %></h1>
-
-  <% @posts.each do |post| %>
-      <div class="media">
-        <%= render partial: 'votes/voter', locals: { topic: @topic, post: post } %><% end %>
 
 <% if policy( @topic ).update? %>
   <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
 <% end %>
-<hr/>
+
+<hr />
 
 <div class="row">
   <div class="col-md-8">
     <p class="lead"><%= @topic.description %></p>
     <%= render @posts %>
+    <%= will_paginate @posts %>
   </div>
   <div class="col-md-4">
     <% if policy( Post.new ).create? %>
