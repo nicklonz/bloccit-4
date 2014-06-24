@@ -5,8 +5,6 @@ class User < ActiveRecord::Base
 
   friendly_id :name, use: :slugged
 
-  User.create! name: "Joe Schmoe"
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

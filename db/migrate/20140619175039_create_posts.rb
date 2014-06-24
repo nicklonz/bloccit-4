@@ -1,11 +1,8 @@
-# db/migrate/[timestamp]_create_topics.rb
-
-class CreateTopics < ActiveRecord::Migration
+class CreatePosts < ActiveRecord::Migration
   def change
-    create_table :topics do |t|
-      t.string :name
-      t.boolean :public, default: true
-      t.text :description
+    create_table :posts do |t|
+      t.string :title
+      t.text :body
 
       t.timestamps
     end
