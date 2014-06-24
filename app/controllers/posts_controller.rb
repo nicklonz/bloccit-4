@@ -1,8 +1,9 @@
 # app/controllers/posts_controller.rb
 
 class PostsController < ApplicationController
-  def show
+   def show
     @topic = Topic.find(params[:topic_id])
+    authorize @topic
     @post = Post.find(params[:id])
     @comments = @post.comments
     @comment = Comment.new
