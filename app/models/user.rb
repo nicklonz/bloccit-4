@@ -1,6 +1,7 @@
 # app/models/user.rb
 
 class User < ActiveRecord::Base
+  extend FriendlyId
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   has_many :favorites, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
+  friendly_id :name, use: :slugged
 
   def role?(base_role)
     role == base_role.to_s

@@ -11,13 +11,13 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
+    @topic = Topic.friendly.find(params[:id])
     authorize @topic
     @posts = @topic.posts.paginate(page: params[:page], per_page: 10)
   end
 
   def edit
-    @topic = Topic.find(params[:id])
+    @topic = Topic.friendly.find(params[:id])
     authorize @topic
   end
 
@@ -44,7 +44,7 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @topic = Topic.find(params[:id])
+    @topic = Topic.friendly.find(params[:id])
     name = @topic.name
 
     authorize @topic
