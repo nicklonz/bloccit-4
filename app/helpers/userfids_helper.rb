@@ -1,0 +1,2 @@
+module UserfidsHelper
+end
