@@ -1,6 +1,6 @@
 <!-- app/views/votes/_voter.html.erb -->
 
-<% if true %>
+<% if policy( Vote.new ).create? %>
   <div class="vote-arrows pull-left">
     <div>
       <%= link_to " ", 
