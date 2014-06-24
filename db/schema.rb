@@ -70,18 +70,7 @@ ActiveRecord::Schema.define(version: 20140624041619) do
     t.string   "slug"
   end
 
-<<<<<<< HEAD
   add_index "topics", ["slug"], name: "index_topics_on_slug", unique: true
-=======
-  create_table "userfids", force: true do |t|
-    t.string   "name"
-    t.string   "slug"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "userfids", ["slug"], name: "index_userfids_on_slug", unique: true
->>>>>>> friendly_id
 
   create_table "users", force: true do |t|
     t.string   "name"
