@@ -7,6 +7,14 @@ class UsersController < ApplicationController
     @users = User.top_rated.paginate(page: params[:page], per_page: 10)
   end
 
+  def new
+    @user = User.new
+  end
+
+  def edit
+    @user = User.friendly.find(params[:id])
+  end
+
   def update
     if current_user.update_attributes(user_params)
       flash[:notice] = "User information updated"
@@ -14,13 +22,13 @@ class UsersController < ApplicationController
     else
       render "devise/registrations/edit"
     end
-  
+  end
+
   def show
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     @posts = @user.posts.visible_to(current_user)
   end
 
-  end
 
   private
 
