@@ -2,9 +2,8 @@
 
 class PostsController < ApplicationController
 
-  User.friendly.find(params[:id])
    def show
-    @topic = Topic.find(params[:topic_id])
+    @topic = Topic.friendly.find(params[:topic_id])
     authorize @topic
     @post = Post.find(params[:id])
     @comments = @post.comments
@@ -12,19 +11,19 @@ class PostsController < ApplicationController
   end
 
   def new
-    @topic = Topic.find(params[:topic_id])
+    @topic = Topic.friendly.find(params[:topic_id])
     @post = Post.new
     authorize @post
   end
 
   def edit
-    @topic = Topic.find(params[:topic_id])
+    @topic = Topic.friendly.find(params[:topic_id])
     @post = Post.find(params[:id])
     authorize @post
   end
 
   def create
-    @topic = Topic.find(params[:topic_id])
+    @topic = Topic.friendly.find(params[:topic_id])
     @post = current_user.posts.build(post_params)
     @post.topic = @topic
 
@@ -38,7 +37,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @topic = Topic.find(params[:topic_id])
+    @topic = Topic.friendly.find(params[:topic_id])
     @post = Post.find(params[:id])
     authorize @post
     if @post.update_attributes(post_params)
