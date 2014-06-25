@@ -25,3 +25,13 @@
   </div>
 </div>
 
+<div id="example" style="width: 950px; height: 350px;"></div>
+
+<script type="text/javascript">
+      var word_array = <%= raw(@json_words) %>;
+
+      $(function() {
+        $("#example").jQCloud(word_array);
+      });
+    </script>
+
