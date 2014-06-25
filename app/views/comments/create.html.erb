@@ -1,2 +1,9 @@
-<h1>Comments#create</h1>
-<p>Find me in app/views/comments/create.html.erb</p>
+<!-- app/views/comments/create.js.erb -->
+
+<% if @comment.valid? %>
+  $('.js-comments').prepend("<%= escape_javascript(render(@comment)) %>");
+  $('.new_comment').html("<%= escape_javascript(render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @new_comment }) %>");
+  $('.js-comments-count').html("<%= @post.comments.count %> Comments");
+<% else %>
+  $('.new_comment').html("<%= escape_javascript(render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment }) %>");
+<% end %>
