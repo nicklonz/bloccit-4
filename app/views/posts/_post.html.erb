@@ -1,4 +1,7 @@
+<!--app/views/posts/_post.html.erb -->
+
 <div class="media">
+  <%= render partial: 'votes/voter', locals: { topic: post.topic, post: post } %>
   <%= link_to [post.topic, post], class: 'pull-left' do %>
     <%= image_tag(post.image.thumb.url) if post.image? %>
   <% end %>
@@ -9,7 +12,7 @@
     <small>
       <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
       submitted <%= time_ago_in_words(post.created_at) %> ago by
-      <%= link_to post.user.name, post.user %>
+      <%= link_to post.user.name, post.user %><br/>
       <%= post.comments.count %> Comments
     </small>
   </div>

@@ -35,6 +35,7 @@
       <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
     <% end %>
   </div>
+  </div>
    <div class="col-md-4">
     <% if policy(@post).edit? %>
       <%= link_to "Edit", edit_topic_post_path(@topic,@post), class: 'btn btn-success' %>
